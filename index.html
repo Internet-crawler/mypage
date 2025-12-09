@@ -48,9 +48,130 @@
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
     <script type="py">
-      
+        import random
+        import string
+        import json
+        import os
+        
+        def generate_random_name(length=4):
+            return ''.join(random.choices(string.ascii_lowercase, k=length))
+        
+        def create_key_map():
+            # Define the character set (approx 95 printable characters)
+            # User requested approx 93, we use printable non-whitespace + space usually 32-126
+            chars = [chr(i) for i in range(32, 127)] 
+            
+            # 7-bit binary means 2^7 = 128 possibilities (0000000 to 1111111)
+            # We create all 128 binary strings of length 7
+            all_binaries = [format(i, '07b') for i in range(128)]
+            
+            # Shuffle the binaries to create a random cipher
+            random.shuffle(all_binaries)
+            
+            # Map characters to the first N binaries
+            # The remaining binaries are "void" (unassigned)
+            key_map = {}
+            for char, binary in zip(chars, all_binaries):
+                key_map[char] = binary
+                
+            return key_map
+        
+        def encrypt_message():
+            print("--- ENCRYPT MODE ---")
+            message = input("Enter message (max 1000 chars): ")
+            
+            if len(message) > 1000:
+                print("Message too long! Truncating to 1000 characters.")
+                message = message[:1000]
+        
+            key_map = create_key_map()
+            
+            encrypted_parts = []
+            for char in message:
+                if char in key_map:
+                    encrypted_parts.append(key_map[char])
+                else:
+                    # Handle characters outside our set if necessary, or ignore
+                    pass
+                    
+            cipher_text = "".join(encrypted_parts)
+            
+            # Generate filenames
+            base_name = generate_random_name()
+            key_filename = f"{base_name}.key"
+            text_filename = f"{base_name}.txt"
+            
+            # Save Key
+            with open(key_filename, 'w') as f:
+                json.dump(key_map, f, indent=2)
+                
+            # Save Cipher Text
+            with open(text_filename, 'w') as f:
+                f.write(cipher_text)
+                
+            print(f"\nSuccess! Files created:")
+            print(f"Key: {key_filename}")
+            print(f"Cipher: {text_filename}")
+            print(f"Cipher Text Preview: {cipher_text[:50]}...")
+        
+        def decrypt_message():
+            print("--- DECRYPT MODE ---")
+            key_path = input("Enter the path to the .key file: ")
+            text_path = input("Enter the path to the text file (same name usually): ")
+            
+            if not os.path.exists(key_path) or not os.path.exists(text_path):
+                print("Error: Files not found.")
+                return
+        
+            try:
+                with open(key_path, 'r') as f:
+                    key_map = json.load(f)
+                    
+                with open(text_path, 'r') as f:
+                    cipher_text = f.read().strip()
+                    
+                # Create reverse map: binary -> char
+                reverse_map = {v: k for k, v in key_map.items()}
+                
+                # Parse 7-bit chunks
+                # We assume the file is a continuous string of 0s and 1s
+                chunk_size = 7
+                decrypted_chars = []
+                
+                for i in range(0, len(cipher_text), chunk_size):
+                    chunk = cipher_text[i:i+chunk_size]
+                    if len(chunk) == chunk_size:
+                        if chunk in reverse_map:
+                            decrypted_chars.append(reverse_map[chunk])
+                        else:
+                            decrypted_chars.append("?") # Void/Unknown
+                            
+                print(f"\nDecrypted Message:\n{''.join(decrypted_chars)}")
+                
+            except Exception as e:
+                print(f"An error occurred: {e}")
+        
+        def main():
+            while True:
+                print("\n1. Encrypt Message")
+                print("2. Decrypt Message")
+                print("3. Exit")
+                choice = input("Choose an option: ")
+                
+                if choice == '1':
+                    encrypt_message()
+                elif choice == '2':
+                    decrypt_message()
+                elif choice == '3':
+                    break
+                else:
+                    print("Invalid choice.")
+        
+        if __name__ == "__main__":
+            main()
     </script>
   </body>
 </html>
+
 
 
