@@ -1,122 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Movie Series</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binary Cipher Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+      .mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1e293b; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #475569; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #64748b; 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0"
+  }
+}
+</script>
 </head>
-<body>
-    <h1>
-        ----------------------------------------------------------------------------------------------
-    </h1>
-    <h2>
-        The Harry Potter Series
-    </h2>
-    <p>
-        1. Harry Potter and The Sorcerer's Stone (2001)-{IDMb tt0241527} [2h 32m]
-    </p>
-    <iframe
-        class="vidsrc_HP1"
-        title="Harry Potter and The Sorcerer's Stone (2001)"
-        src="https://vidsrc.cc/v3/embed/movie/tt0241527?autoPlay=false"
-        width="500px"
-        height="300px"
-        style="border:0;"
-        allowfullscreen>
-    </iframe>
-    <p>
-        2. Harry Potter and The Chamber of Secrets(2002)-{IDMb tt0295297} [2h 41m]
-    </p>
-    <iframe
-        class="vidsrc_HP2"
-        title="Harry Potter and The Chamber of Secrets (2002)"
-        src="https://vidsrc.cc/v3/embed/movie/tt0295297?autoPlay=false&poster=true"
-        width="500px"
-        height="300px"
-        style="border:0;"
-        allowfullscreen>
-    </iframe>
-    <p>
-        3.Harry Potter and The Prisoner of Azkaban (2004)-{IDMB-tt0304141} [2h 22m]
-    </p>
-    <iframe
-        class="vidsrc_HP3"
-        title="Harry Potter and The Prisoner of Azkaban (2004)"
-        src="https://vidsrc.cc/v3/embed/movie/tt0304141?autoPlay=false&poster=true"
-        width="500px"
-        height="300px"
-        style="border:0;"
-        allowfullscreen>
-    </iframe>
-    <p>
-        4. Harry Potter and The Goblet of Fire (2005)-{IDMB-tt0330373} [2h 37m]
-    </p>
-    <iframe
-        class="vidsrc_HP4"
-        title="Harry Potter and The Goblet of Fire (2005)"
-        src="https://vidsrc.cc/v3/embed/movie/tt0330373?autoPlay=false&poster=true"
-        width="500px"
-        height="300px"
-        style="border:0;"
-        allowfullscreen>
-    </iframe>
-    <p>
-        5. Harry Potter and The Order of the Phoenix (2007)-{IDMB-tt0373889} [2h 18m]
-    </p>
-    <iframe
-        class="vidsrc_HP5"
-        title="Harry Potter and The Order of the Phoenix (2007)"
-        src="https://vidsrc.cc/v3/embed/movie/tt0373889?autoPlay=false&poster=true"
-        width="500px"
-        height="300px"
-        style="border:0;"
-        allowfullscreen>
-    </iframe>
-    <p>
-        6. Harry Potter and The Half-Blood Prince (2009)-{IDMB-tt0417741} [2h 33m]
-    </p>
-    <iframe
-        class="vidsrc_HP6"
-        title="Harry Potter and The Half-Blood Prince (2009)"
-        src="https://vidsrc.cc/v3/embed/movie/tt0417741?autoPlay=false&poster=true"
-        width="500px"
-        height="300px"
-        style="border:0;"
-        allowfullscreen>
-    </iframe>
-    <p>
-        7. Harry Potter and The Deathly Hallows: Part1 (2010)-{IDMB-tt0926084} [2h 26m]
-    </p>
-    <iframe
-        class="vidsrc_HP7"
-        title="Harry Potter and The Deathly Hallows: Part1 (2010)"
-        src="https://vidsrc.cc/v3/embed/movie/tt0926084?autoPlay=false&poster=true"
-        width="500px"
-        height="300px"
-        style="border:0;"
-        allowfullscreen>
-    </iframe>
-    <p>
-        8. Harry Potter and The Deathly Hallows: Part2(2011) {IDMb-tt1201607} [2h 10m]
-    </p>
-    <iframe
-        class="vidsrc_HP8"
-        title="Harry Potter and The Deathly Hallows: Part2(2011)"
-        src="https://vidsrc.cc/v3/embed/movie/tt1201607?autoPlay=false&poster=true"
-        width="500px"
-        height="300px"
-        style="border:0;"
-        allowfullscreen>
-    </iframe>
-    <h1>
-        ----------------------------------------------------------------------------------------------
-    </h1>
-    <p>
-        embeded from Vidsrc.cc
-    </p>
-    <p>
-        Try out freedns.afraid.org for 5 free subdomains!
-    </p>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
-
-
